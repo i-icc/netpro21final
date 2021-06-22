@@ -8,14 +8,13 @@
         {% endfor %}
     </select>
     {% for pref, citys in data.pref.items() %}
-    <select id="{{pref}}" class="subbox">
+    <select name="city" id="{{pref}}" class="subbox" form="send">
         <option value="" selected="selected">地域を選択してください</option>
         {% for city in citys %}
-        <option value="{{city}}" data-val="{{pref}}">{{city}}</option>
+        <option value="{{data.city[city]}}" data-val="{{pref}}">{{city}}</option>
         {% endfor %}
     </select>
     {% endfor %}
-
 </div>
 <script type="text/javascript" src="/static/js/chains.js"></script>
 {% endblock %}
