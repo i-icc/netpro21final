@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="pulldownset">
+    <select class="mainselect">
+        <option value="" selected="selected">県を選択してください</option>
+        {% for pref in data.prefs %}
+        <option value="{{pref}}">{{pref}}</option>
+        {% endfor %}
+    </select>
+    {% for pref, citys in data.pref.items() %}
+    <select id="{{pref}}" class="subbox">
+        <option value="" selected="selected">地域を選択してください</option>
+        {% for city in citys %}
+        <option value="{{city}}" data-val="{{pref}}">{{city}}</option>
+        {% endfor %}
+    </select>
+    {% endfor %}
+
+</div>
+<script type="text/javascript" src="/static/js/chains.js"></script>
+{% endblock %}
