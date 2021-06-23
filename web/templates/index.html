@@ -19,11 +19,11 @@
         <option value="none" selected="selected" class="msg">選択してください</option>
         {% for pref, citys in data.pref.items() %}
         {% for city in citys %}
-        <option value="{{city}}" class="{{pref}}">{{city}}</option>
+        <option value="{{city}}" class="{{pref}}" style="display: none;">{{city}}</option>
         {% endfor %}
         {% endfor %}
     </select>
-    <input type="submit" name="送信する" disabled>
+    <input type="submit" id="sendBtn" disabled>
 </form>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="/static/js/chain.js"></script>

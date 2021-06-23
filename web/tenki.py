@@ -11,16 +11,17 @@ def get_w(code):
     return r.json()
 
 
-def processing_json(r):
+def processing_json(r,day):
     result = {}
     result["locate"] = r["location"]["prefecture"] + r["location"]["city"]
-    today = r["forecasts"][0]
-    result["weather"] = today["telop"]
-    result["wave"] = today["detail"]["wave"]
-    result["temp"] = today["temperature"]["max"]["celsius"]
-    result["moi"] = today["temperature"]["max"]["fahrenheit"]
-    result["降水確率"] = today["chanceOfRain"]
-    result["image_svg"] = today["image"]["url"]
+    the_date = r["forecasts"][day]
+    result["day"] = the_date["dateLabel"]
+    result["weather"] = the_date["telop"]
+    result["wave"] = the_date["detail"]["wave"]
+    result["temp"] = the_date["temperature"]["max"]["celsius"]
+    result["moi"] = the_date["temperature"]["max"]["fahrenheit"]
+    result["降水確率"] = the_date["chanceOfRain"]
+    result["image_svg"] = the_date["image"]["url"]
     return result
 
 

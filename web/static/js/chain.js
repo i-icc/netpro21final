@@ -1,9 +1,10 @@
 $(function() {
+	var $btn = $('#sendBtn');
 	// 県名が変更されたら発動
 	$('select[name="pref"]').change(function() {
 		// 選択されている県のクラス名を取得
 		var prefName = $('select[name="pref"] option:selected').attr("class");
-		console.log(prefName);
+		// console.log(prefName);
 		// 都市名の要素数を取得
 		var count = $('select[name="city"]').children().length;
 		// 都市名の要素数分、for文で回す
@@ -24,6 +25,18 @@ $(function() {
 				}
 			}
 		}
-		console.log("aaa");
+		$btn.attr('disabled', 'disabled');
+	})
+	// 地域名が選択されたら発動
+	$('select[name="city"]').change(function() {
+		// 選択された値を取得
+		var cityName = $('select[name="city"] option:selected').attr("value");
+		// 選択された値が none でなければボタンを有効か
+		if (cityName == "none"){
+			$btn.attr('disabled', 'disabled');
+		} else {
+			$btn.removeAttr('disabled');
+		}
+
 	})
 })

@@ -15,8 +15,10 @@ def result():
     city = request.args.get('city')
     if city not in DataSet.city:
         return render_template('error.html')
+    day = request.args.get('day')
+    day = 0 if day is None else int(day)
     j = get_w(DataSet.city[city])
-    j = processing_json(j)
+    j = processing_json(j,day)
     return render_template('result.html', q=j)
 
 
