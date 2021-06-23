@@ -1,20 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="pulldownset">
-    <select class="mainselect">
-        <option value="" selected="selected">県を選択してください</option>
+<form action="" method="get">
+    <p>日にちを選択してください</p>
+    <select name="day">
+        <option value="0" selected="selected">今日</option>
+        <option value="1">明日</option>
+        <option value="2">明後日</option>
+    </select>
+    <p>県を選択してください</p>
+    <select name="pref">
+        <option value="none" selected="selected" class="msg">選択してください</option>
         {% for pref in data.prefs %}
-        <option value="{{pref}}">{{pref}}</option>
+        <option value="{{pref}}" class="{{pref}}">{{pref}}</option>
         {% endfor %}
     </select>
-    {% for pref, citys in data.pref.items() %}
-    <select id="{{pref}}" class="subbox" onchange="location.href=this.value;">
-        <option value="" selected="selected">地域を選択してください</option>
+    <p>地域を選択してください</p>
+    <select name="city">
+        <option value="none" selected="selected" class="msg">選択してください</option>
+        {% for pref, citys in data.pref.items() %}
         {% for city in citys %}
-        <option value="/result?city={{city}}" data-val="{{pref}}">{{city}}</option>
+        <option value="{{city}}" class="{{pref}}">{{city}}</option>
+        {% endfor %}
         {% endfor %}
     </select>
-    {% endfor %}
-</div>
-<script type="text/javascript" src="/static/js/chains.js"></script>
+    
+</form>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/static/js/chain.js"></script>
 {% endblock %}
