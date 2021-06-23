@@ -8,10 +8,10 @@
         {% endfor %}
     </select>
     {% for pref, citys in data.pref.items() %}
-    <select name="city" id="{{pref}}" class="subbox" form="send">
+    <select id="{{pref}}" class="subbox" onchange="location.href=this.value;">
         <option value="" selected="selected">地域を選択してください</option>
         {% for city in citys %}
-        <option value="{{data.city[city]}}" data-val="{{pref}}">{{city}}</option>
+        <option value="/result?city={{city}}" data-val="{{pref}}">{{city}}</option>
         {% endfor %}
     </select>
     {% endfor %}

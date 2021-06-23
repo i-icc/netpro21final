@@ -13,6 +13,5 @@ def main():
     code = DataSet.city["稚内"]
     print(get_w(code))
 
-
 if __name__=="__main__":
     main()
