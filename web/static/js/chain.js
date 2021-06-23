@@ -24,5 +24,6 @@ $(function() {
 				}
 			}
 		}
+		console.log("aaa");
 	})
 })

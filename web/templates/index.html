@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="" method="get">
+<form action="/result" method="get">
     <p>日にちを選択してください</p>
     <select name="day">
         <option value="0" selected="selected">今日</option>
@@ -23,7 +23,7 @@
         {% endfor %}
         {% endfor %}
     </select>
-    
+    <input type="submit" name="送信する" disabled>
 </form>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="/static/js/chain.js"></script>
