@@ -1,9 +1,10 @@
 import socket
 import time
+from game import Game 
 
 def main():
-    field = [[0,1,0],[0,0,1]]
-    req = {"field":field}
+    game = Game()
+    req = {"field":game,"flag":"0","winner":"d"}
 
     print('start server')
     # create a socket object
@@ -28,15 +29,15 @@ def main():
     print(addr)
     clientsocket2.send(f"{1}".encode('ascii'))
     time.sleep(1)
-    clientsocket2.send(f"{req}".encode('ascii'))
-    clientsocket1.send(f"{req}".encode('ascii'))
+    clientsocket2.send(f"{req['field'].dump()}".encode('ascii'))
+    clientsocket1.send(f"{req['field'].dump()}".encode('ascii'))
 
     for i in range(5):
         print(f"{i}ターン目")
         print(clientsocket1.recv(1024).decode('ascii'))
-        clientsocket2.send(f"{req}".encode('ascii'))
+        clientsocket2.send(f"{req['field'].dump()}".encode('ascii'))
         print(clientsocket2.recv(1024).decode('ascii'))
-        clientsocket1.send(f"{req}".encode('ascii'))
+        clientsocket1.send(f"{req['field'].dump()}".encode('ascii'))
     
     clientsocket2.close()
     clientsocket1.close()

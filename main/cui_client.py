@@ -1,4 +1,5 @@
 import socket
+from game import Game
 
 class App():
     def __init__(self):
@@ -22,13 +23,13 @@ class App():
             exit()
 
     def waiting(self):
-        print(self.field)
+        Game.load(self.field)
         print("相手の行動を待っています。")
         self.field = self.s.recv(1024).decode('ascii')
         self.move()
         
     def move(self):
-        print(self.field)
+        Game.load(self.field)
         comand = None
         while True:
             comand = input("行動してください(u:up d:down r:right l:left):")
