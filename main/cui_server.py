@@ -32,12 +32,20 @@ def main():
     clientsocket2.send(f"{req['field'].dump()}".encode('ascii'))
     clientsocket1.send(f"{req['field'].dump()}".encode('ascii'))
 
-    for i in range(5):
+    n = 2
+    for i in range(n):
         print(f"{i}ターン目")
         print(clientsocket1.recv(1024).decode('ascii'))
         clientsocket2.send(f"{req['field'].dump()}".encode('ascii'))
         print(clientsocket2.recv(1024).decode('ascii'))
-        clientsocket1.send(f"{req['field'].dump()}".encode('ascii'))
+        if i != n - 1:
+            clientsocket1.send(f"{req['field'].dump()}".encode('ascii'))
+
+    clientsocket2.send("flag".encode('ascii'))
+    clientsocket1.send("flag".encode('ascii'))
+    time.sleep(1)
+    clientsocket2.send(f"{req['field'].dump()}".encode('ascii'))
+    clientsocket1.send(f"{req['field'].dump()}".encode('ascii'))
     
     clientsocket2.close()
     clientsocket1.close()
