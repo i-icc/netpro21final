@@ -24,9 +24,41 @@ def processing_json(r,day):
     result["image_svg"] = the_date["image"]["url"]
     return result
 
+# コーデ選出 (仮)
+def choice_close(w,t):
+    code = ""
+    code_a = "半袖, 半ズボン"
+    code_b = "半袖, 長ズボン"
+    code_c = "長袖, 長ズボン"
+    code_p_a = ",シャツ"
+    code_p_b = ",パーカー"
+    code_p_c = ",ダウン"
 
-def choice_close():
-    pass
+    wet = DataSet.wether
+    print(w,t)
+    if t == None: return "errer"
+    t = int(t)
+    if 25 <= t:
+        code += code_a
+    elif 20 <= t:
+        if w in wet["晴"] or w in wet["曇"]:
+            code += code_b
+        elif w in wet["雨"]:
+            code += code_b + code_p_a
+    elif 10 <= t:
+        if w in wet["晴"]:
+            code += code_c
+        elif w in wet["曇"] or w in wet["雨"]:
+            code += code_c + code_p_a
+    elif 0 <= t:
+        code += code_c + code_p_b
+    elif -5 <= t:
+        if w in wet["晴"] or w in wet["曇"]:
+            code += code_c + code_p_c
+        else:
+            code += code_c + code_p_b + code_p_c
+    return code
+
 
 
 def main():

@@ -1,4 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-{{q}}
+<!-- {{q}} -->
+{{q["day"]}}の<br>
+天気は{{q["weather"]}}<img src="{{q['image_svg']}}" width=60 height=60><br>
+気温は{{q["temp"]}}˚C<br>
+おすすめコーデ:{{code}}
 {% endblock %}

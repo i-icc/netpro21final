@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from data import DataSet
-from tenki import get_w, processing_json
+from tenki import get_w, processing_json, choice_close
 
 app = Flask(__name__)
 
@@ -19,7 +19,8 @@ def result():
     day = 0 if day is None else int(day)
     j = get_w(DataSet.city[city])
     j = processing_json(j,day)
-    return render_template('result.html', q=j)
+    code = choice_close(j["weather"],j["temp"])
+    return render_template('result.html', q=j, code=code)
 
 
 if __name__ == "__main__":
